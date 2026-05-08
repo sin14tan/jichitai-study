@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JichitaiStudy ｜ 地方公務員法・地方自治法 学習アプリ</title>
+<meta name="description" content="地方公務員法・地方自治法など自治体職員の基礎知識を学ぶための学習アプリ">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f1a2e;
+    --paper: #f3f4f8;
+    --paper-dark: #e3e7f0;
+    --accent: #1e4a8c;
+    --accent-dark: #16365f;
+    --accent-light: #4a73b8;
+    --gold: #b8923f;
+    --green: #2d6a4f;
+    --rose: #9d3a4a;
+    --shadow: rgba(15, 26, 46, 0.15);
+    --line: #1a2640;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+    line-height: 1.7;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(15,26,46,0.04) 1px, transparent 0);
+    background-size: 20px 20px;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 20px 80px;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    text-align: center;
+    padding: 28px 0 20px;
+    border-bottom: 3px double var(--ink);
+    margin-bottom: 28px;
+    position: relative;
+  }
+
+  header::before {
+    content: '令和八年度';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    letter-spacing: 0.5em;
+    color: var(--accent);
+    font-family: 'Shippori Mincho', serif;
+  }
+
+  h1 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    margin-top: 12px;
+    color: var(--ink);
+  }
+
+  h1 .blue { color: var(--accent); }
+
+  .subtitle {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: #666;
+    margin-top: 6px;
+    font-family: 'Shippori Mincho', serif;
+  }
+
+  /* ===== HOME SCREEN ===== */
+  .home-stats {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 18px 20px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 2px solid var(--ink);
+  }
+
+  .home-stats .stat {
+    text-align: center;
+  }
+
+  .home-stats .stat-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    opacity: 0.7;
+    margin-bottom: 4px;
+  }
+
+  .home-stats .stat-value {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--gold);
+  }
+
+  .section-label {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    margin-bottom: 12px;
+    color: #555;
+    border-left: 4px solid var(--accent);
+    padding-left: 10px;
+  }
+
+  .mode-selector {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .mode-btn {
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    padding: 18px 20px;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 4px 4px 0 var(--ink);
+    color: var(--ink);
+  }
+
+  .mode-btn:hover, .mode-btn:focus-visible {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--ink);
+    outline: none;
+  }
+
+  .mode-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 var(--ink);
+  }
+
+  .mode-btn .icon {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--accent);
+    min-width: 40px;
+    text-align: center;
+    line-height: 1;
+  }
+
+  .mode-btn .text { flex: 1; }
+
+  .mode-btn .title {
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 2px;
+  }
+
+  .mode-btn .desc {
+    font-size: 12px;
+    color: #666;
+    letter-spacing: 0.05em;
+  }
+
+  /* ===== CHAPTER LIST ===== */
+  .chapters {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .chapter-card {
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    padding: 14px 18px;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.15s;
+    color: var(--ink);
+  }
+
+  .chapter-card:hover {
+    background: var(--paper-dark);
+  }
+
+  .chapter-card .ch-num {
+    font-family: 'Shippori Mincho', serif;
+    color: var(--accent);
+    font-weight: 700;
+    margin-right: 12px;
+    font-size: 18px;
+  }
+
+  .chapter-card .ch-title {
+    flex: 1;
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .chapter-card .ch-count {
+    font-size: 11px;
+    color: #888;
+    background: var(--paper-dark);
+    padding: 3px 8px;
+    border-radius: 2px;
+  }
+
+  /* ===== ROUND SELECTOR ===== */
+  .round-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 26, 46, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 20px;
+  }
+
+  .round-modal.hidden { display: none; }
+
+  .round-content {
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    padding: 24px 22px;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+
+  .round-content h3 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .round-content .round-info {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 18px;
+  }
+
+  .round-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .round-btn {
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    padding: 10px;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: center;
+    font-size: 13px;
+    transition: all 0.15s;
+    position: relative;
+  }
+
+  .round-btn:hover {
+    background: var(--accent);
+    color: var(--paper);
+  }
+
+  .round-btn .r-num {
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 700;
+    font-size: 15px;
+    display: block;
+  }
+
+  .round-btn .r-range {
+    font-size: 10px;
+    opacity: 0.7;
+  }
+
+  .round-btn.completed {
+    background: var(--paper-dark);
+  }
+
+  .round-btn.completed::after {
+    content: '✓';
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .round-cancel {
+    margin-top: 14px;
+    width: 100%;
+    padding: 10px;
+    background: none;
+    border: 1px solid var(--ink);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 12px;
+  }
+
+  /* ===== QUIZ SCREEN ===== */
+  .quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+  }
+
+  .back-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    color: var(--ink);
+    font-size: 13px;
+    padding: 6px 0;
+  }
+
+  .progress-text {
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 700;
+  }
+
+  .progress-bar {
+    height: 4px;
+    background: var(--paper-dark);
+    margin-bottom: 24px;
+    border: 1px solid var(--ink);
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    transition: width 0.3s;
+  }
+
+  .question-card {
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    padding: 24px 22px;
+    margin-bottom: 20px;
+    box-shadow: 5px 5px 0 var(--ink);
+    position: relative;
+  }
+
+  .question-card::before {
+    content: attr(data-num);
+    position: absolute;
+    top: -14px;
+    left: 18px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Shippori Mincho', serif;
+    font-size: 11px;
+    padding: 3px 12px;
+    letter-spacing: 0.2em;
+  }
+
+  .q-tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    background: var(--accent);
+    color: var(--paper);
+    padding: 3px 10px;
+    margin-bottom: 14px;
+    font-weight: 500;
+    margin-right: 4px;
+  }
+
+  .q-tag.ox { background: var(--green); }
+  .q-tag.fill { background: var(--gold); color: var(--ink); }
+  .q-tag.ch { background: var(--rose); }
+
+  .q-text {
+    font-size: 16px;
+    line-height: 1.85;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  .q-text .blank {
+    display: inline-block;
+    min-width: 80px;
+    border-bottom: 2px solid var(--accent);
+    padding: 0 8px;
+    text-align: center;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* ===== CHOICES ===== */
+  .choices {
+    display: grid;
+    gap: 10px;
+  }
+
+  .choice {
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    padding: 14px 16px;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+    font-size: 14px;
+    line-height: 1.6;
+    transition: all 0.15s;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    color: var(--ink);
+  }
+
+  .choice:hover:not(:disabled) {
+    background: var(--paper-dark);
+    border-color: var(--accent);
+  }
+
+  .choice .label {
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 700;
+    color: var(--accent);
+    min-width: 22px;
+  }
+
+  .choice.correct {
+    background: #d4e3d0;
+    border-color: var(--green);
+    border-width: 2px;
+  }
+
+  .choice.correct .label { color: var(--green); }
+
+  .choice.incorrect {
+    background: #ebd6d9;
+    border-color: var(--rose);
+    border-width: 2px;
+    opacity: 0.85;
+  }
+
+  .choice:disabled { cursor: default; }
+
+  /* OX style */
+  .ox-choices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .ox-choice {
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    padding: 24px 12px;
+    cursor: pointer;
+    font-family: 'Shippori Mincho', serif;
+    font-size: 36px;
+    font-weight: 800;
+    text-align: center;
+    transition: all 0.15s;
+    color: var(--ink);
+  }
+
+  .ox-choice.maru { color: var(--green); }
+  .ox-choice.batsu { color: var(--rose); }
+
+  .ox-choice:hover:not(:disabled) {
+    background: var(--paper-dark);
+    transform: scale(0.98);
+  }
+
+  .ox-choice.correct {
+    background: #d4e3d0;
+    border-color: var(--green);
+  }
+
+  .ox-choice.incorrect {
+    background: #ebd6d9;
+    border-color: var(--rose);
+  }
+
+  /* Fill in the blank */
+  .fill-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid var(--ink);
+    background: var(--paper);
+    font-family: inherit;
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+
+  .fill-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: #fff;
+  }
+
+  .fill-submit {
+    width: 100%;
+    padding: 12px;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.1em;
+  }
+
+  .fill-submit:hover { background: var(--accent); }
+
+  /* ===== EXPLANATION ===== */
+  .explanation {
+    margin-top: 18px;
+    padding: 16px 18px;
+    background: var(--paper-dark);
+    border-left: 4px solid var(--accent);
+    font-size: 13px;
+    line-height: 1.75;
+    animation: slideIn 0.3s ease;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .explanation .exp-label {
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .explanation strong {
+    color: var(--accent-dark);
+    font-weight: 700;
+  }
+
+  .next-btn {
+    width: 100%;
+    margin-top: 16px;
+    padding: 14px;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    font-family: 'Shippori Mincho', serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .next-btn:hover { background: var(--accent); }
+
+  /* ===== RESULT SCREEN ===== */
+  .result-screen {
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .result-stamp {
+    display: inline-block;
+    border: 4px double var(--accent);
+    padding: 24px 36px;
+    margin-bottom: 24px;
+    transform: rotate(-3deg);
+    background: var(--paper);
+  }
+
+  .result-stamp .score {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 56px;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .result-stamp .total {
+    font-size: 14px;
+    color: #666;
+    margin-top: 4px;
+  }
+
+  .result-grade {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+
+  .result-msg {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 28px;
+    line-height: 1.8;
+  }
+
+  .result-actions {
+    display: grid;
+    gap: 10px;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .result-actions button {
+    padding: 14px;
+    border: 2px solid var(--ink);
+    background: var(--paper);
+    font-family: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.15s;
+    color: var(--ink);
+  }
+
+  .result-actions button.primary {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .result-actions button:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Wrong answers review */
+  .wrong-review {
+    margin-top: 32px;
+    text-align: left;
+  }
+
+  .wrong-review h3 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 16px;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .wrong-item {
+    background: var(--paper);
+    border-left: 4px solid var(--rose);
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    font-size: 13px;
+  }
+
+  .wrong-item .wq {
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .wrong-item .wa {
+    color: var(--green);
+    font-weight: 700;
+    font-size: 12px;
+  }
+
+  /* Hidden */
+  .hidden { display: none !important; }
+
+  /* Streak indicator */
+  .streak {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  /* Footer brand */
+  footer {
+    text-align: center;
+    padding: 24px 0 12px;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: #999;
+    font-family: 'Shippori Mincho', serif;
+  }
+
+  @media (max-width: 480px) {
+    h1 { font-size: 22px; }
+    .q-text { font-size: 15px; }
+    .ox-choice { font-size: 28px; padding: 20px 8px; }
+    .container { padding: 20px 16px 60px; }
+    .round-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>Jichitai<span class="blue">Study</span></h1>
+    <div class="subtitle">自治体職員の基礎知識 学習アプリ</div>
+  </header>
+
+  <!-- ===== HOME SCREEN ===== -->
+  <section id="home">
+    <div class="home-stats">
+      <div class="stat">
+        <div class="stat-label">問題数</div>
+        <div class="stat-value" id="totalQ">0</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">正答率</div>
+        <div class="stat-value" id="accuracy">--</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">学習回数</div>
+        <div class="stat-value" id="sessions">0</div>
+      </div>
+    </div>
+
+    <div class="section-label">学習モード</div>
+    <div class="mode-selector">
+      <button class="mode-btn" onclick="openRoundModal('all')">
+        <div class="icon">全</div>
+        <div class="text">
+          <div class="title">全範囲ランダム（10問ずつ）</div>
+          <div class="desc">第1〜5章すべてからランダム10問</div>
+        </div>
+      </button>
+      <button class="mode-btn" onclick="startQuiz('wrong','sequential')">
+        <div class="icon">復</div>
+        <div class="text">
+          <div class="title">間違えた問題だけ</div>
+          <div class="desc">前回ミスした問題を集中復習（最大10問）</div>
+        </div>
+      </button>
+      <button class="mode-btn" onclick="startQuiz('quick','random')">
+        <div class="icon">急</div>
+        <div class="text">
+          <div class="title">頻出ポイント10問</div>
+          <div class="desc">最重要問題のみピックアップ</div>
+        </div>
+      </button>
+      <button class="mode-btn" onclick="startQuiz('latest','random')">
+        <div class="icon">新</div>
+        <div class="text">
+          <div class="title">法改正10問</div>
+          <div class="desc">第5章（過去10年の改正）から10問</div>
+        </div>
+      </button>
+    </div>
+
+    <div class="section-label">章別演習</div>
+    <div class="chapters" id="chapterList"></div>
+  </section>
+
+  <!-- ===== ROUND SELECTOR MODAL ===== -->
+  <div class="round-modal hidden" id="roundModal">
+    <div class="round-content">
+      <h3 id="roundTitle">出題範囲を選択</h3>
+      <div class="round-info" id="roundInfo">10問ずつに分けて出題されます</div>
+      <div class="round-grid" id="roundGrid"></div>
+      <button class="round-cancel" onclick="closeRoundModal()">キャンセル</button>
+    </div>
+  </div>
+
+  <!-- ===== QUIZ SCREEN ===== -->
+  <section id="quiz" class="hidden">
+    <div class="quiz-header">
+      <button class="back-btn" onclick="goHome()">← 戻る</button>
+      <div class="progress-text">
+        <span id="qNum">1</span> / <span id="qTotal">10</span>
+        <span class="streak hidden" id="streakInd"></span>
+      </div>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill" style="width:0%"></div>
+    </div>
+
+    <div class="question-card" id="qCard">
+      <div>
+        <span class="q-tag" id="qTag">四択</span>
+        <span class="q-tag ch" id="qChTag">第1章</span>
+      </div>
+      <div class="q-text" id="qText"></div>
+      <div id="qChoices"></div>
+      <div class="explanation hidden" id="qExp">
+        <span class="exp-label">解説</span>
+        <div id="expText"></div>
+      </div>
+      <button class="next-btn hidden" id="nextBtn" onclick="nextQuestion()">次の問題 →</button>
+    </div>
+  </section>
+
+  <!-- ===== RESULT SCREEN ===== -->
+  <section id="result" class="hidden">
+    <div class="result-screen">
+      <div class="result-stamp">
+        <div class="score" id="finalScore">0</div>
+        <div class="total">/ <span id="finalTotal">10</span> 問正解</div>
+      </div>
+      <div class="result-grade" id="grade">合格圏</div>
+      <div class="result-msg" id="msg"></div>
+      <div class="result-actions">
+        <button class="primary" onclick="retryWrong()">間違えた問題をやり直す</button>
+        <button onclick="goHome()">ホームへ戻る</button>
+      </div>
+      <div class="wrong-review" id="wrongReview"></div>
+    </div>
+  </section>
+
+  <footer>JICHITAI STUDY ・ 令和八年度版</footer>
+</div>
+
+<script>
+// ============ QUESTION DATABASE ============
+const questions = [
+  // ========== 第1章 法律の基礎 ==========
+  {ch:1, type:'mc', hot:true, q:'法の形式について、効力の優劣関係として正しいものはどれか。', choices:['憲法 > 法律 > 条約 > 命令 > 条例 > 規則','憲法 > 条約 > 法律 > 命令 > 条例 > 規則','法律 > 憲法 > 条約 > 命令 > 条例 > 規則','憲法 > 法律 > 命令 > 条約 > 条例 > 規則'], answer:1, exp:'法令の優劣は <strong>憲法 > 条約 > 法律 > 命令 > 条例 > 規則</strong> の順。憲法は最高法規であり、条約は一般に法律より上位、条例・規則は地方公共団体の法形式である。'},
+  {ch:1, type:'ox', hot:true, q:'憲法第99条は、天皇又は摂政及び国務大臣、国会議員、裁判官その他の公務員に憲法尊重擁護の義務を課している。', answer:true, exp:'憲法第99条の<strong>憲法尊重擁護義務</strong>。地方公務員もこの「その他の公務員」に含まれ、憲法の尊重・擁護義務を負う。'},
+  {ch:1, type:'mc', hot:true, q:'「特別法は一般法に優先する」という原則について、正しい例はどれか。', choices:['憲法は法律に優先する','商法は民法に優先する','改正後の法は改正前の法に優先する','条例は規則に優先する'], answer:1, exp:'<strong>特別法優位の原則</strong>。商取引のように民法より特別な事柄を取り扱う商法は、民法に優先して適用される。'},
+  {ch:1, type:'mc', q:'国家と国民の関係を規律するなど、国家権力の行使に関する法を何というか。', choices:['私法','公法','特別法','自然法'], answer:1, exp:'<strong>公法</strong>は国家と国民の関係を規律するもの（憲法、刑法、行政法等）。<strong>私法</strong>は私人相互の関係を規律するもの（民法、商法等）。'},
+  {ch:1, type:'ox', q:'法治主義とは、国による強制力を有する法によって統治することであり、悪法も含めてすべての法によって統治することを受け入れる考え方である。', answer:true, exp:'<strong>法治主義</strong>は法による統治を意味し、悪法も含む。これに対し<strong>「法の支配」</strong>は基本的人権の尊重を基調とした法によって統治することを意味し、悪法を排除する考え方。'},
+  {ch:1, type:'fill', hot:true, q:'憲法第98条第1項は「この憲法は、国の【　　　】であって、その条規に反する法律、命令、詔勅及び国務に関するその他の行為の全部又は一部は、その効力を有しない」と規定している。', answer:['最高法規'], exp:'憲法第98条は<strong>最高法規性</strong>を定める。憲法に反する法律等は効力を有しない。'},
+  {ch:1, type:'mc', hot:true, q:'憲法における国民の権利のうち、自由権的基本権の「身体の自由に関する基本権」に該当しないものはどれか。', choices:['奴隷的拘束及び苦役からの自由（18条）','刑事被告人の権利（37条）','信教の自由（20条）','法の下の平等（14条）'], answer:2, exp:'信教の自由は<strong>「精神的自由に関する基本権」</strong>。'},
+  {ch:1, type:'ox', q:'近代立憲主義の下では、国家が国民生活に介入することは小さければ小さいほどよいとされ、国家権力は必要最小限度であるべきと考えられた（消極国家観）。', answer:true, exp:'18世紀のフランス革命以降の<strong>近代立憲主義</strong>では消極国家観が主流。20世紀以降、社会的弱者保護のため国家の積極的介入を求める<strong>現代立憲主義（積極国家観）</strong>に移行した。'},
+  {ch:1, type:'mc', q:'憲法における人権の体系のうち、参政権に該当するものはどれか。', choices:['思想・良心の自由','生存権','公務員の選定・罷免の権利','財産権'], answer:2, exp:'<strong>参政権</strong>には公務員の選定・罷免の権利（15条1項）、選挙人の資格（15条3項）、地方特別法の住民投票（95条）等。'},
+  {ch:1, type:'mc', q:'憲法における人権の体系のうち、社会権（社会的基本権）に該当しないものはどれか。', choices:['生存権（25条）','教育を受ける権利（26条）','勤労の権利（27条）','財産権（29条）'], answer:3, exp:'<strong>財産権は経済的自由権</strong>。社会権は生存権、教育を受ける権利、勤労の権利、勤労者の権利の4つ。'},
+  {ch:1, type:'fill', q:'刑法第199条は「人を殺した者は、死刑又は無期若しくは【　　　】年以上の懲役に処する」と規定している。', answer:['5','五'], exp:'刑法199条（殺人罪）の法定刑。社会規範に強制力を伴わせた典型例。'},
+  {ch:1, type:'ox', q:'公法と私法の区別は絶対的なものではなく、考え方を整理するためのものとしての区別が用いられることが多い。', answer:true, exp:'<strong>公法と私法の区別は絶対的ではない</strong>。社会の複雑化に伴い両者の中間領域も生じている。'},
+  {ch:1, type:'mc', q:'国家機関のうち、人権保障の最後の砦であり、憲法保障機能を持つとされる機関はどれか。', choices:['国会','内閣','裁判所','地方自治体'], answer:2, exp:'<strong>裁判所</strong>は違憲立法審査権（憲法81条）を持ち、人権保障の最後の砦とされる。'},
+  {ch:1, type:'mc', q:'国民の自由を守るための権力分立の仕組みとして、わが国が採用している統治機構の基本構造はどれか。', choices:['二権分立','三権分立','四権分立','一元統治'], answer:1, exp:'<strong>三権分立</strong>（立法・行政・司法）。権力を分離・独立させ互いに抑制させて自由を守る仕組み。'},
+
+  // ========== 第2章 地方自治 ==========
+  {ch:2, type:'mc', hot:true, q:'憲法第92条にいう「地方自治の本旨」を構成する2つの要素はどれか。', choices:['住民自治と団体自治','団体自治と国家自治','住民自治と直接民主','団体自治と地方分権'], answer:0, exp:'地方自治の本旨は<strong>住民自治</strong>（地域住民の意思に基づく）と<strong>団体自治</strong>（国から独立した団体が自らの意思と責任で行う）の2つの要素から成る。'},
+  {ch:2, type:'mc', hot:true, q:'地方公共団体の制定する法形式の優劣について、正しいものはどれか。', choices:['法律 > 条例 > 命令 > 規則','憲法 > 条約 > 法律 > 命令 > 条例 > 規則','条例 > 規則 > 法律 > 命令','法律 > 規則 > 命令 > 条例'], answer:1, exp:'国の法令と地方の法形式を含めた優劣は<strong>憲法 > 条約 > 法律 > 命令 > 条例 > 規則</strong>。'},
+  {ch:2, type:'ox', hot:true, q:'地方公共団体は、住民、区域、自治権の3つを構成要素としている。', answer:true, exp:'地方公共団体の3要素は<strong>区域（地域的・空間的構成要素）、住民（人的構成要素）、自治権（法制度的構成要素）</strong>。'},
+  {ch:2, type:'fill', hot:true, q:'地方公共団体の事務は、自治法によって「【　　　】」と「【　　　】」に大別される。', answer:['自治事務','法定受託事務'], exp:'地方公共団体の事務は<strong>自治事務</strong>と<strong>法定受託事務</strong>に分類される。'},
+  {ch:2, type:'mc', hot:true, q:'指定都市の人口要件として、地方自治法上、何万以上とされているか。', choices:['20万以上','30万以上','50万以上','100万以上'], answer:2, exp:'<strong>指定都市</strong>：人口50万以上。<strong>中核市</strong>：人口20万以上。<strong>市</strong>：人口5万以上。'},
+  {ch:2, type:'mc', q:'中核市の人口要件として、平成27年4月以降は何万以上とされているか。', choices:['10万以上','20万以上','30万以上','50万以上'], answer:1, exp:'平成26年の自治法改正により、中核市は<strong>人口20万以上</strong>に統一された（平成27年4月施行）。特例市は廃止され中核市と統合。'},
+  {ch:2, type:'mc', q:'市となる人口要件として、地方自治法上正しいものはどれか。', choices:['人口3万以上','人口5万以上','人口10万以上','人口30万以上'], answer:1, exp:'市の要件は<strong>人口5万以上</strong>（自治法8条1項）。'},
+  {ch:2, type:'mc', hot:true, q:'地方公共団体の機関について、憲法第93条第2項に規定される直接選挙の対象として正しいものはどれか。', choices:['議会の議員のみ','長のみ','議会の議員及び長','議員、長、副知事'], answer:2, exp:'憲法第93条第2項は、<strong>議会の議員及び長その他法律の定める吏員</strong>は住民が直接選挙すると規定。'},
+  {ch:2, type:'ox', q:'地方公共団体の議会と長は、いずれも住民の直接選挙によって選ばれる二元代表制を採用している。', answer:true, exp:'地方公共団体は<strong>二元代表制</strong>を採用。議会と長がそれぞれ住民から直接選ばれ、相互にチェック・アンド・バランスを果たす。'},
+  {ch:2, type:'mc', hot:true, q:'条例違反に対する罰則として、地方自治法上、条例で定めることができる範囲として正しいものはどれか。', choices:['2年以下の懲役・100万円以下の罰金','5年以下の懲役・1000万円以下の罰金','2年以下の懲役・1万円以下の罰金','3年以下の懲役・50万円以下の罰金'], answer:0, exp:'地方自治法第14条第3項により<strong>2年以下の懲役・禁錮、100万円以下の罰金、拘留、科料若しくは没収の刑又は5万円以下の過料</strong>を科すことができる。'},
+  {ch:2, type:'mc', hot:true, q:'住民の直接請求のうち、議会の解散請求に必要な署名数（有権者総数40万人以下の場合）として正しいものはどれか。', choices:['有権者総数の50分の1以上','有権者総数の3分の1以上','有権者総数の4分の1以上','有権者総数の10分の1以上'], answer:1, exp:'<strong>議会の解散請求・解職請求</strong>：有権者の3分の1以上。<strong>条例制定改廃請求・事務監査請求</strong>：有権者の50分の1以上。'},
+  {ch:2, type:'fill', hot:true, q:'条例の制定改廃を求める直接請求に必要な署名数は、有権者総数の【　　　】以上である。', answer:['50分の1','五十分の一'], exp:'<strong>条例制定改廃請求・事務監査請求</strong>は有権者総数の<strong>50分の1以上</strong>。'},
+  {ch:2, type:'mc', q:'住民の直接請求のうち、条例の制定改廃請求の請求先として正しいものはどれか。', choices:['長','議会の議長','選挙管理委員会','監査委員'], answer:0, exp:'<strong>条例の制定改廃請求</strong>の請求先は<strong>長</strong>（自治法12条）。事務監査請求は監査委員、議会解散・解職請求は選挙管理委員会が請求先。'},
+  {ch:2, type:'mc', q:'住民の直接請求のうち、事務監査請求の請求先として正しいものはどれか。', choices:['長','議会の議長','選挙管理委員会','監査委員'], answer:3, exp:'<strong>事務監査請求</strong>の請求先は<strong>監査委員</strong>。'},
+  {ch:2, type:'ox', q:'地方自治法上、議会は地方公共団体の意思決定機関であり、長は執行機関であるが、議会と長との関係は対等・並列とされ、議会は長に対し不信任決議をすることもできる。', answer:true, exp:'議会は不信任決議権を、長は議会の解散権・拒否権を持つ。<strong>二元代表制</strong>の特徴。'},
+  {ch:2, type:'mc', q:'国の関与の基本類型について、自治法第245条が定めていないものはどれか。', choices:['助言又は勧告','資料の提出の要求','是正の要求','緊急の介入'], answer:3, exp:'関与の基本類型は①助言又は勧告、②資料の提出の要求、③是正の要求、④同意、⑤許可・認可・承認、⑥指示、⑦代執行、⑧協議、⑨その他。「緊急の介入」は規定されていない。'},
+  {ch:2, type:'mc', q:'住民監査請求と住民訴訟について正しいものはどれか。', choices:['住民監査請求は住民1人でも可能だが、住民訴訟には監査請求が前置必要','住民監査請求には100人以上の連名が必要','住民訴訟は監査請求なしでも提起できる','住民訴訟は外国人住民でも提起可能'], answer:0, exp:'<strong>住民監査請求</strong>は住民1人でも可能（自治法242）。<strong>住民訴訟</strong>は住民監査請求を経た者に限る（監査請求前置主義）。'},
+  {ch:2, type:'mc', q:'地方公共団体の議会の議員定数について、正しいものはどれか。', choices:['法律で全国一律に定められている','条例で定める','長が規則で定める','選挙管理委員会が定める'], answer:1, exp:'平成23年の改正により、議員定数の上限規定は撤廃され、各団体が<strong>条例で定める</strong>こととなった。'},
+  {ch:2, type:'mc', q:'地方公共団体の議会の議員の任期として正しいものはどれか。', choices:['2年','4年','6年','8年'], answer:1, exp:'議員の任期は<strong>4年</strong>（自治法93条1項）。長の任期も4年（自治法140条）。'},
+  {ch:2, type:'mc', q:'長の被選挙権について、都道府県知事の場合に必要な年齢として正しいものはどれか。', choices:['満20歳以上','満25歳以上','満30歳以上','満35歳以上'], answer:2, exp:'<strong>都道府県知事</strong>：満30歳以上。<strong>市町村長</strong>：満25歳以上。<strong>議員</strong>：満25歳以上。'},
+  {ch:2, type:'mc', q:'議会の議決事件として、自治法96条に規定されているものに該当しないものはどれか。', choices:['条例の制定改廃','予算の議決','決算の認定','職員の任免'], answer:3, exp:'議会の議決事件は条例の制定改廃、予算、決算認定、契約締結等15事項（自治法96条）。<strong>職員の任免は長の権限</strong>。'},
+  {ch:2, type:'ox', q:'議会で予算の議決が否決された場合、長は議会の解散権を行使することができる。', answer:false, exp:'長の議会解散権は<strong>議会で長の不信任決議が可決された場合</strong>に限り行使できる（自治法178条）。'},
+  {ch:2, type:'mc', q:'長の不信任決議について、可決の要件として正しいものはどれか。', choices:['議員定数の2分の1以上の出席で出席議員の過半数の同意','議員定数の3分の2以上の出席で出席議員の過半数の同意','議員定数の3分の2以上の出席で出席議員の4分の3以上の同意','全議員の3分の2以上の同意'], answer:2, exp:'<strong>長の不信任決議</strong>：議員数の3分の2以上が出席し、その<strong>4分の3以上</strong>の同意（自治法178条3項）。'},
+  {ch:2, type:'mc', q:'地方公共団体の長の補助機関について、誤っているものはどれか。', choices:['副知事・副市町村長','会計管理者','専門委員','監査委員'], answer:3, exp:'<strong>監査委員は委員会及び委員（執行機関）</strong>。長の補助機関は副知事・副市町村長、会計管理者、出納員、専門委員等。'},
+  {ch:2, type:'mc', q:'地方公共団体の委員会及び委員（行政委員会）として、すべての地方公共団体に置かれるものはどれか。', choices:['人事委員会','公安委員会','教育委員会','労働委員会'], answer:2, exp:'<strong>すべての地方公共団体に置かれる行政委員会</strong>：教育委員会、選挙管理委員会、人事委員会または公平委員会、監査委員。'},
+  {ch:2, type:'mc', q:'地方公共団体の組合のうち、二つ以上の地方公共団体が事務の一部を共同処理するために設立する組合はどれか。', choices:['一部事務組合','広域連合','財産区','合併特例区'], answer:0, exp:'<strong>一部事務組合</strong>：消防、ごみ処理、上下水道など事務の一部を共同処理。<strong>広域連合</strong>：多様化した広域行政需要に対応。'},
+  {ch:2, type:'mc', q:'特別地方公共団体に該当しないものはどれか。', choices:['特別区','地方公共団体の組合','財産区','政令指定都市'], answer:3, exp:'<strong>政令指定都市は普通地方公共団体（市）</strong>。特別地方公共団体は①特別区、②地方公共団体の組合、③財産区。'},
+
+  // ========== 第3章 地方公務員制度 ==========
+  {ch:3, type:'mc', hot:true, q:'地方公務員のうち、特別職に該当しないものはどれか。', choices:['議会の議員','副市町村長','一般行政職員','行政委員会の委員'], answer:2, exp:'<strong>特別職</strong>：①公選等による職、②審議会委員、③地方公営企業の管理者等。一般行政職員は<strong>一般職</strong>。'},
+  {ch:3, type:'ox', hot:true, q:'地方公務員法は、特別職にも全面的に適用される。', answer:false, exp:'地公法は<strong>一般職にのみ適用</strong>され、特別職には原則適用されない。'},
+  {ch:3, type:'mc', hot:true, q:'地方公務員制度の根本基準として、地方公務員法に定められていないものはどれか。', choices:['全体の奉仕者性','勤労者性','成績主義の採用','政治的活動の自由の保障'], answer:3, exp:'根本基準は①全体の奉仕者、②勤労者、③成績主義、④政治的中立性、⑤公務能率の確保。<strong>政治的活動は制限</strong>される。'},
+  {ch:3, type:'mc', hot:true, q:'地方公務員の任用方法として地方公務員法に規定されているものはどれか。', choices:['採用、昇任、降任、転任','採用、昇任、退職、解雇','採用、配転、転職、出向','任命、選考、推薦、指名'], answer:0, exp:'地公法第17条に規定された任用方法は<strong>採用・昇任・降任・転任</strong>の4つ。'},
+  {ch:3, type:'mc', q:'地方公務員の欠格条項に該当しないものはどれか。', choices:['禁錮以上の刑に処せられ、その執行を終わるまでの者','当該地方公共団体において懲戒免職の処分を受け、2年を経過しない者','日本国憲法施行の日以後において、日本国憲法又はその下に成立した政府を暴力で破壊することを主張する政党を結成した者','破産手続開始の決定を受け、復権を得ない者'], answer:3, exp:'欠格条項（地公法16条）に<strong>破産は含まれない</strong>。'},
+  {ch:3, type:'mc', q:'採用の方法について、地方公務員法上、職員の採用は原則として何の方法によるとされているか。', choices:['選考','競争試験','面接のみ','推薦'], answer:1, exp:'採用は原則として<strong>競争試験</strong>による（地公法17条の2）。'},
+  {ch:3, type:'mc', q:'臨時的任用の任用期間は最長でどれくらいか。', choices:['3か月','6か月','1年','2年'], answer:1, exp:'<strong>臨時的任用</strong>は最長6か月。1回に限り更新可能（最長1年）。'},
+  {ch:3, type:'ox', hot:true, q:'地方公務員の給与は、職員の職務と責任に応じて決定されなければならない（職務給の原則）。', answer:true, exp:'<strong>職務給の原則</strong>（地公法24条）。'},
+  {ch:3, type:'mc', q:'給与支給の原則について、誤っているものはどれか。', choices:['通貨払いの原則','直接払いの原則','全額払いの原則','現金一括払いの原則'], answer:3, exp:'給与支給の原則は<strong>①通貨払い、②直接払い、③全額払い</strong>の3原則。'},
+  {ch:3, type:'fill', q:'給与に関する基本原則として、給与は条例に基づかずには支給することはできないとする原則を【　　　】の原則という。', answer:['条例主義','給与条例主義'], exp:'<strong>給与条例主義</strong>（地公法24条6項、25条1項）。'},
+  {ch:3, type:'mc', q:'地方公務員の給与決定の原則として、自治法に規定されているものに該当しないものはどれか。', choices:['職務給の原則','均衡の原則','条例主義の原則','歩合制の原則'], answer:3, exp:'給与決定の原則：①職務給の原則、②均衡の原則、③条例主義の原則。歩合制は原則ではない。'},
+  {ch:3, type:'mc', q:'手当の種類のうち、生活関連手当に該当しないものはどれか。', choices:['扶養手当','住居手当','通勤手当','管理職手当'], answer:3, exp:'<strong>管理職手当は職務関連手当</strong>。生活関連手当は扶養手当、地域手当、住居手当、通勤手当等。'},
+  {ch:3, type:'mc', q:'分限処分に該当しないものはどれか。', choices:['免職','休職','降任','戒告'], answer:3, exp:'<strong>分限処分</strong>は①免職、②休職、③降任、④降給の4種。戒告は<strong>懲戒処分</strong>。'},
+  {ch:3, type:'mc', hot:true, q:'懲戒処分の種類として正しい組み合わせはどれか。', choices:['免職・休職・減給・戒告','免職・停職・減給・戒告','免職・停職・降任・戒告','免職・停職・減給・訓告'], answer:1, exp:'<strong>懲戒処分</strong>（地公法29条）は<strong>免職・停職・減給・戒告</strong>の4種。'},
+  {ch:3, type:'mc', q:'分限処分の事由として、地公法28条に規定されていないものはどれか。', choices:['人事評価又は勤務の状況を示す事実に照らして、勤務実績がよくない場合','心身の故障のため、職務の遂行に支障があり、又はこれに堪えない場合','職に必要な適格性を欠く場合','上司の命令に違反した場合'], answer:3, exp:'<strong>命令違反は懲戒事由</strong>（29条）。分限事由（28条）：①勤務実績不良、②心身故障、③適格性欠如、④廃職又は過員。'},
+  {ch:3, type:'mc', q:'懲戒処分の事由として、地公法29条に規定されていないものはどれか。', choices:['法令違反','職務上の義務違反又は職務怠慢','全体の奉仕者たるにふさわしくない非行','勤務実績がよくない場合'], answer:3, exp:'<strong>勤務実績不良は分限事由</strong>。'},
+  {ch:3, type:'fill', hot:true, q:'地方公務員の服務上の義務のうち、職務上のものとして「【　　　】の宣誓」「法令等及び上司の職務上の命令に従う義務」「【　　　】の義務」の3つがある。', answer:['服務','職務専念'], exp:'<strong>職務上の3義務</strong>：①服務の宣誓、②法令等及び上司の職務上の命令に従う義務、③職務専念義務。'},
+  {ch:3, type:'mc', hot:true, q:'地方公務員の身分上の義務に該当しないものはどれか。', choices:['信用失墜行為の禁止','秘密を守る義務','政治的行為の制限','職務専念義務'], answer:3, exp:'<strong>職務専念義務は職務上の義務</strong>。身分上の義務は信用失墜行為の禁止、秘密を守る義務、政治的行為の制限、争議行為等の禁止、営利企業等への従事制限。'},
+  {ch:3, type:'mc', q:'秘密を守る義務に違反した場合の罰則として、地方公務員法上正しいものはどれか。', choices:['1年以下の懲役又は3万円以下の罰金','1年以下の懲役又は50万円以下の罰金','3年以下の懲役又は100万円以下の罰金','戒告のみで刑事罰はない'], answer:1, exp:'秘密を守る義務違反は<strong>1年以下の懲役又は50万円以下の罰金</strong>（地公法60条2号）。退職後も適用。'},
+  {ch:3, type:'ox', hot:true, q:'地方公務員は、争議行為等が禁止されており、これに違反する行為を企てた者は刑事罰の対象となる。', answer:true, exp:'地公法37条は<strong>争議行為等の禁止</strong>を規定。違反は刑事罰（地公法61条4号）の対象。'},
+  {ch:3, type:'mc', q:'地方公務員の労働基本権について、警察職員及び消防職員に認められているものはどれか。', choices:['団結権のみ','団体交渉権','争議権','いずれも認められない'], answer:3, exp:'<strong>警察職員・消防職員</strong>は団結権・団体交渉権・争議権<strong>すべて認められない</strong>（地公法52条）。'},
+  {ch:3, type:'mc', q:'労働基本権について、企業職員（地方公営企業）と単純労務職員に認められていないものはどれか。', choices:['団結権','団体交渉権','団体協約締結権','争議権'], answer:3, exp:'企業職員・単純労務職員は団結権・団体交渉権・<strong>団体協約締結権あり</strong>、ただし<strong>争議権はなし</strong>。'},
+  {ch:3, type:'mc', q:'政治的行為の制限について、地公法36条に規定されていないものはどれか。', choices:['政党その他の政治的団体の結成への関与','特定の政党を支持する目的での投票勧誘','文書又は図画を地方公共団体等の庁舎に掲示すること','宗教的団体への加入'], answer:3, exp:'宗教団体への加入制限はない（信教の自由）。'},
+  {ch:3, type:'mc', q:'営利企業等への従事制限について、職員が営利企業等に従事するために必要な手続として正しいものはどれか。', choices:['事前の届出','任命権者の許可','人事委員会の承認','長への報告'], answer:1, exp:'<strong>営利企業等への従事制限</strong>（地公法38条）。職員が営利企業等の役員等を兼ね、又は自ら営利企業を営む場合は<strong>任命権者の許可</strong>が必要。'},
+  {ch:3, type:'mc', q:'勤務時間について、原則として地方公務員の勤務時間は1日何時間、1週間何時間とされているか。', choices:['1日7時間、1週35時間','1日8時間、1週40時間','1日8時間、1週44時間','1日9時間、1週45時間'], answer:1, exp:'労働基準法に準じて、<strong>1日8時間、1週40時間</strong>が原則。'},
+  {ch:3, type:'mc', q:'有給休暇（年次休暇）の付与日数について、原則として何日付与されるか。', choices:['10日','15日','20日','25日'], answer:2, exp:'年次有給休暇は通常条例で年間<strong>20日</strong>付与。'},
+  {ch:3, type:'mc', q:'育児休業について、対象となる子の年齢として正しいものはどれか。', choices:['1歳に達するまで','2歳に達するまで','3歳に達するまで','小学校就学まで'], answer:2, exp:'<strong>育児休業</strong>は子が<strong>3歳に達する日まで</strong>取得可能。男女を問わず取得できる。'},
+  {ch:3, type:'mc', q:'公務災害補償制度について、誤っているものはどれか。', choices:['公務上の災害は補償の対象となる','通勤災害も補償の対象となる','地方公務員災害補償法に基づく','使用者の過失がなければ補償されない'], answer:3, exp:'<strong>公務災害補償は無過失責任</strong>。使用者の過失がなくても補償される。'},
+
+  // ========== 第4章 財政と税 ==========
+  {ch:4, type:'mc', hot:true, q:'地方財政の特色として、当てはまらないものはどれか。', choices:['多元性','多様性','弾力性','安定性'], answer:3, exp:'地方財政の3つの特色は<strong>①多元性、②多様性、③弾力性に乏しい</strong>。「安定性」は特色ではない。'},
+  {ch:4, type:'mc', hot:true, q:'国と地方公共団体の経費負担区分について、もっぱら国が全額負担する経費に該当するものはどれか。', choices:['義務教育の経費','一般行政費','国会、外交、司法、防衛等の経費','道路・河川の維持管理費'], answer:2, exp:'<strong>全額国費負担</strong>：国会、外交、司法、立法、医師免許など全国的に統一的事務の経費。'},
+  {ch:4, type:'mc', hot:true, q:'地方税のうち、市町村税に該当しないものはどれか。', choices:['市町村民税','固定資産税','事業税','軽自動車税'], answer:2, exp:'<strong>事業税は道府県税</strong>。'},
+  {ch:4, type:'mc', q:'地方税のうち、道府県税に該当しないものはどれか。', choices:['道府県民税','事業税','地方消費税','固定資産税'], answer:3, exp:'<strong>固定資産税は市町村税</strong>。'},
+  {ch:4, type:'mc', q:'地方税の分類について、その使途を特定せず一般経費に充てる税を何というか。', choices:['普通税','目的税','法定税','超過税'], answer:0, exp:'<strong>普通税</strong>：使途を特定せず一般経費に充てる税。<strong>目的税</strong>：特定事業の経費に充てる税。'},
+  {ch:4, type:'mc', hot:true, q:'地方交付税について、正しい記述はどれか。', choices:['国が地方公共団体の使途を指定して交付する補助金である','地方公共団体間の財源の偏在を調整するため、国税の一定割合を地方に配分するもの','地方公共団体の借入金の一種である','地方税法に基づいて課税される税金の一種である'], answer:1, exp:'<strong>地方交付税</strong>は国税の一定割合を地方に配分する<strong>使途の指定されない一般財源</strong>。'},
+  {ch:4, type:'fill', hot:true, q:'地方交付税には、財源不足を補う【　　　】交付税（94%）と、災害等の特別な財政需要に応じる【　　　】交付税（6%）がある。', answer:['普通','特別'], exp:'<strong>普通交付税</strong>（94%）と<strong>特別交付税</strong>（6%）。'},
+  {ch:4, type:'mc', q:'普通交付税の算定式について、正しいものはどれか。', choices:['基準財政需要額 − 基準財政収入額','基準財政収入額 − 基準財政需要額','標準税収入額 − 標準歳出額','基準財政需要額 × 留保財源率'], answer:0, exp:'<strong>普通交付税 = 基準財政需要額 − 基準財政収入額</strong>。'},
+  {ch:4, type:'mc', q:'基準財政収入額は、標準的な地方税収入の何%として算定されるか。', choices:['50%','75%','90%','100%'], answer:1, exp:'基準財政収入額は標準的な地方税収入の<strong>75%</strong>。残り25%は留保財源。'},
+  {ch:4, type:'mc', q:'地方譲与税について、正しい記述はどれか。', choices:['国が徴収して地方に譲与する税','地方が徴収して国に納める税','使途が完全に自由な財源','地方公共団体間で互いに譲与する税'], answer:0, exp:'<strong>地方譲与税</strong>：本来地方の財源とすべきものを徴税の便宜上国が一旦徴収し、地方に譲与する税。'},
+  {ch:4, type:'mc', q:'国庫支出金について、誤っているものはどれか。', choices:['国庫負担金','国庫補助金','国庫委託金','国庫交付金'], answer:3, exp:'国庫支出金は<strong>①国庫負担金、②国庫補助金、③国庫委託金</strong>の3種。'},
+  {ch:4, type:'mc', q:'国庫支出金のうち、国の事務を地方公共団体に委託する場合に、国が経費の全額を負担するものはどれか。', choices:['国庫負担金','国庫補助金','国庫委託金','地方交付税'], answer:2, exp:'<strong>国庫委託金</strong>：本来国が行うべき事務を地方公共団体に委託する場合、国が全額を負担。'},
+  {ch:4, type:'ox', hot:true, q:'地方債は、原則として地方公共団体が普通会計の財源を補うために発行する1年以上の長期借入金であり、起債の目的は法定された経費に限られる。', answer:true, exp:'<strong>地方債</strong>は1年以上の長期借入金で、起債目的は<strong>適債事業</strong>に限定される。'},
+  {ch:4, type:'mc', q:'地方債の発行について、現在の制度として正しいものはどれか。', choices:['総務大臣の許可制','総務大臣との協議制','財務大臣の承認制','制限なく自由に発行できる'], answer:1, exp:'平成18年度から地方債の<strong>協議制</strong>へ移行（それ以前は許可制）。'},
+  {ch:4, type:'mc', q:'地方公共団体の財政健全化判断比率として、4つの指標に該当しないものはどれか。', choices:['実質赤字比率','連結実質赤字比率','実質公債費比率','住民一人当たり地方税額'], answer:3, exp:'健全化判断比率は<strong>①実質赤字比率、②連結実質赤字比率、③実質公債費比率、④将来負担比率</strong>。'},
+  {ch:4, type:'mc', q:'実質公債費比率とは何を示す指標か。', choices:['一般会計等が負担する元利償還金等の標準財政規模に対する比率','地方債の発行残高の標準財政規模に対する比率','歳出に占める公債費の割合','住民一人当たりの公債費負担額'], answer:0, exp:'<strong>実質公債費比率</strong>：一般会計等が負担する元利償還金等の標準財政規模に対する比率。早期健全化基準25%、財政再生基準35%。'},
+  {ch:4, type:'mc', q:'財政再生団体となった場合、地方公共団体は何を策定しなければならないか。', choices:['財政健全化計画','財政再生計画','財政再建計画','行政改革計画'], answer:1, exp:'財政再生団体は<strong>財政再生計画</strong>、早期健全化団体は<strong>財政健全化計画</strong>。'},
+  {ch:4, type:'mc', hot:true, q:'予算の原則として地方自治法に規定されているものに該当しないものはどれか。', choices:['総計予算主義の原則','単一予算主義の原則','予算統一の原則','予算機密の原則'], answer:3, exp:'予算の原則は①総計予算主義、②単一予算主義、③予算統一、④予算事前議決、⑤<strong>予算公開の原則</strong>。'},
+  {ch:4, type:'fill', hot:true, q:'会計年度独立の原則とは、各会計年度における歳出は、その年度の【　　　】をもって、これに充てなければならないという原則である。', answer:['歳入'], exp:'<strong>会計年度独立の原則</strong>（自治法208条2項）。'},
+  {ch:4, type:'mc', q:'予算の種類のうち、年度途中で必要に応じて議会の議決を経て定められる予算はどれか。', choices:['当初予算','補正予算','暫定予算','骨格予算'], answer:1, exp:'<strong>補正予算</strong>：当初予算成立後、必要に応じて変更や追加を行う予算。'},
+  {ch:4, type:'mc', q:'当初予算が年度開始前までに成立しない場合に編成される予算は何か。', choices:['補正予算','暫定予算','骨格予算','継続費'], answer:1, exp:'<strong>暫定予算</strong>：本予算成立後、暫定予算は失効し本予算に吸収される。'},
+  {ch:4, type:'mc', q:'長の選挙が予定されているなどの事情により、政策的な経費を除いて編成される予算を何と呼ぶか。', choices:['当初予算','補正予算','暫定予算','骨格予算'], answer:3, exp:'<strong>骨格予算</strong>：選挙後に新長によって肉付け予算が編成される。'},
+  {ch:4, type:'mc', q:'予算の内容として地方自治法に規定されているものに該当しないものはどれか。', choices:['歳入歳出予算','継続費','債務負担行為','補助金交付計画'], answer:3, exp:'予算の内容（自治法215条）：①歳入歳出予算、②継続費、③繰越明許費、④債務負担行為、⑤地方債、⑥一時借入金、⑦各項の流用。'},
+  {ch:4, type:'mc', q:'継続費とは何か。', choices:['同じ年度内で経費を繰り越すこと','数年度にわたる事業の経費の総額及び年割額を定め、数年度にわたって支出するもの','一会計年度内に終わらなかった経費を翌年度に繰り越すこと','緊急時に予備費から支出する経費'], answer:1, exp:'<strong>継続費</strong>（自治法212条）：履行に数年度を要する事業について経費の総額・年割額を定め支出するもの。'},
+  {ch:4, type:'mc', q:'繰越明許費とは何か。', choices:['性質上又は予算成立後の事由により年度内にその支出を終わらない見込みのある経費を翌年度に繰り越して使用するもの','一会計年度内に支出を終わらない経費を予備費から補填するもの','数年度にわたる事業の経費','一時借入金として年度を越えて使用する経費'], answer:0, exp:'<strong>繰越明許費</strong>（自治法213条）。'},
+  {ch:4, type:'mc', q:'債務負担行為とは何か。', choices:['歳入歳出予算外で将来にわたって債務を負担する行為','一時借入金の発行','地方債の借換え','基金の運用'], answer:0, exp:'<strong>債務負担行為</strong>（自治法214条）：将来にわたって債務を負担する行為（複数年契約等）。'},
+  {ch:4, type:'mc', q:'一時借入金について、正しい記述はどれか。', choices:['歳入の不足を補うため、当該会計年度内に償還される借入金','地方債の一種で長期借入金である','使途が指定されない一般財源である','議会の議決を経ずに長が自由に発行できる'], answer:0, exp:'<strong>一時借入金</strong>（自治法235条の3）：当該会計年度内に償還される借入金。最高額は予算で定める。'},
+  {ch:4, type:'ox', q:'歳出予算は支出の最高限度を示すものであり、必ずしも金額どおりに執行する必要はない。', answer:true, exp:'歳出予算は<strong>支出の最高限度額</strong>。歳入予算は単なる収入の見積り。'},
+  {ch:4, type:'mc', hot:true, q:'地方公共団体の歳入のうち、使途が特定されない自主財源として最も重要なものはどれか。', choices:['地方税','地方交付税','国庫支出金','地方債'], answer:0, exp:'<strong>地方税</strong>は地方公共団体の自主財源かつ一般財源で最重要。'},
+  {ch:4, type:'mc', q:'地方財政における歳入の分類で、自主財源と依存財源について正しい組み合わせはどれか。', choices:['地方税は自主財源、地方交付税は依存財源','地方税は依存財源、地方交付税は自主財源','地方債は自主財源、地方税は依存財源','国庫支出金は自主財源、地方税は依存財源'], answer:0, exp:'<strong>自主財源</strong>：地方税、使用料・手数料等。<strong>依存財源</strong>：地方交付税、国庫支出金、地方譲与税、地方債等。'},
+  {ch:4, type:'mc', q:'地方財政における歳入の分類で、一般財源に該当するものの組み合わせとして正しいものはどれか。', choices:['地方税、地方交付税、地方譲与税','地方税、国庫支出金、地方債','地方交付税、国庫支出金、使用料','地方譲与税、地方債、財産収入'], answer:0, exp:'<strong>一般財源</strong>：地方税、地方交付税、地方譲与税。'},
+  {ch:4, type:'mc', q:'予備費について、正しい記述はどれか。', choices:['予算超過の支出又は予算外の支出に充てるため、歳入歳出予算に計上できる','議会の特別議決を経なければ支出できない','一般会計には設けるが特別会計には設けない','使途が議会の議決事項である'], answer:0, exp:'<strong>予備費</strong>は議会の議決を経ずに使用できる。一般会計には必置、特別会計は任意。'},
+  {ch:4, type:'mc', q:'歳出予算の経費の性質別分類のうち、義務的経費に該当しないものはどれか。', choices:['人件費','扶助費','公債費','投資的経費'], answer:3, exp:'<strong>義務的経費</strong>：人件費、扶助費、公債費。<strong>投資的経費</strong>：普通建設事業費、災害復旧事業費等。'},
+  {ch:4, type:'mc', q:'歳出予算の経費の目的別分類について、正しいものはどれか。', choices:['議会費、総務費、民生費、衛生費等の行政目的別の分類','人件費、物件費、扶助費等の性質別の分類','義務的経費と投資的経費の分類','一般会計と特別会計の分類'], answer:0, exp:'<strong>目的別分類</strong>：行政目的による分類。<strong>性質別分類</strong>は経費の経済的性質による分類。'},
+  {ch:4, type:'mc', q:'決算の認定について、正しいものはどれか。', choices:['長が決算を調製し議会の認定を受ける','監査委員のみが認定する','議会が認定すれば足り、長の調製は不要','財務大臣の承認が必要'], answer:0, exp:'決算は<strong>会計管理者が調製し、長に提出</strong>。長は監査委員の審査に付した上で議会の認定に付す。'},
+  {ch:4, type:'mc', q:'地方財政計画について、正しいものはどれか。', choices:['地方公共団体が個別に策定する計画','内閣が作成し国会に提出する全国の地方公共団体の歳入歳出見込額に関する書類','地方議会が議決する計画','総務省が地方公共団体に強制する計画'], answer:1, exp:'<strong>地方財政計画</strong>：内閣が作成し、毎年度国会に提出（地方交付税法7条）。'},
+  {ch:4, type:'mc', q:'地方公共団体の経費のうち、人件費の例として該当しないものはどれか。', choices:['給料','職員手当','共済費','物件費'], answer:3, exp:'<strong>物件費は人件費ではない</strong>。'},
+
+  // ========== 第5章 過去10年の主な法改正 ==========
+  {ch:5, type:'mc', hot:true, q:'令和2年4月から施行された地方公務員法・地方自治法の改正により創設された、非常勤・臨時職員に代わる制度として正しいものはどれか。', choices:['特定任期付職員制度','会計年度任用職員制度','再任用職員制度','定年前再任用短時間勤務制度'], answer:1, exp:'<strong>会計年度任用職員制度</strong>（令和2年4月施行）。従来の臨時・非常勤職員の任用について「同一労働同一賃金」の観点から制度化。任期は会計年度の末日までの期間。'},
+  {ch:5, type:'ox', hot:true, q:'令和3年6月の地方公務員法改正により、地方公務員の定年は段階的に65歳まで引き上げられることとなった。', answer:true, exp:'<strong>定年引上げ法</strong>（令和3年法律第63号）。令和5年度から2年に1歳ずつ段階的に引上げ、令和13年度には<strong>65歳定年</strong>となる。国家公務員の定年引上げと連動。'},
+  {ch:5, type:'mc', hot:true, q:'定年引上げに伴い導入された、組織の新陳代謝を確保するための制度として正しいものはどれか。', choices:['役職定年制（管理監督職勤務上限年齢制）','早期退職勧奨制度','業績評価制度','降任制度'], answer:0, exp:'<strong>役職定年制（管理監督職勤務上限年齢制）</strong>。管理監督職にある職員が一定年齢（原則60歳）に達した日後の最初の4月1日までに管理監督職以外の職に異動。'},
+  {ch:5, type:'mc', q:'役職定年制（管理監督職勤務上限年齢）の年齢は、原則として何歳を基本とされているか。', choices:['55歳','60歳','63歳','65歳'], answer:1, exp:'役職定年（管理監督職勤務上限年齢）は、国家公務員との権衡を考慮し、原則<strong>60歳</strong>を基本として条例で定める。'},
+  {ch:5, type:'ox', q:'定年引上げの経過措置として、当分の間、60歳を超える職員の給料月額は60歳前の7割水準に設定される。', answer:true, exp:'<strong>60歳超職員の給料月額は60歳前の7割水準</strong>（当分の間）。均衡の原則に基づき、国家公務員と同様の措置を地方も条例で講ずるよう要請されている。'},
+  {ch:5, type:'mc', hot:true, q:'令和5年4月施行の地方公務員法改正により、新たに導入された制度として正しいものはどれか。', choices:['会計年度任用職員制度','定年前再任用短時間勤務制','役職定年制','行政不服審査制度'], answer:1, exp:'<strong>定年前再任用短時間勤務制</strong>（令和5年4月施行）。60歳以後に退職した職員を、本人の意向を踏まえ短時間勤務の職で再任用できる制度。'},
+  {ch:5, type:'mc', hot:true, q:'令和6年4月から施行された会計年度任用職員に関する制度改正として、正しいものはどれか。', choices:['期末手当の廃止','勤勉手当の支給開始','退職手当の廃止','給与の凍結'], answer:1, exp:'令和5年地方自治法改正により、令和6年4月から会計年度任用職員に<strong>勤勉手当の支給</strong>が可能となった。これまでは期末手当のみだった。'},
+  {ch:5, type:'ox', q:'令和6年6月の地方自治法改正により、大規模な災害や感染症のまん延等の場合に、国が地方公共団体に対して必要な指示を行うことができる「補充的指示権」が創設された。', answer:true, exp:'<strong>令和6年6月の地方自治法改正</strong>。「国民の安全に重大な影響を及ぼす事態」において、各大臣が閣議決定を経て、必要最小限度の範囲で地方に指示を行えるようになった（特例関与）。'},
+  {ch:5, type:'mc', q:'令和6年改正の地方自治法における「補充的指示権」の発動要件として、正しいものはどれか。', choices:['内閣総理大臣の単独判断','閣議決定を経て、各大臣が必要な限度で指示','地方議会の議決','住民投票'], answer:1, exp:'各大臣は<strong>閣議の決定</strong>を経て、必要な限度において指示を行うことができる（個別法に規定がない場合の補充的なもの）。'},
+  {ch:5, type:'mc', hot:true, q:'平成26年の地方自治法改正により、特例市制度との統合などが行われ、人口要件が変更された制度はどれか。', choices:['指定都市制度','中核市制度','政令指定都市制度','広域連合制度'], answer:1, exp:'<strong>中核市制度</strong>。平成26年改正により、特例市制度を廃止し中核市と統合。人口要件が30万人以上から<strong>20万人以上</strong>に引き下げられた（平成27年4月施行）。'},
+  {ch:5, type:'ox', q:'平成28年の人事行政改革により、人事評価制度に基づく能力本位の任用が義務化され、人事評価の結果が任用・給与・分限等の人事管理の基礎として活用されることとなった。', answer:true, exp:'<strong>平成28年4月施行の人事評価制度</strong>。能力評価と業績評価の二本立てで、任用・給与・分限等に活用。地公法23条の改正により法定化。'},
+  {ch:5, type:'mc', q:'令和2年の地方公務員法改正により、退職管理の適正の確保のため、再就職者による働きかけの規制対象となる「営利企業等」の範囲はどう規定されたか。', choices:['国内の上場企業のみ','営利企業及び非営利法人','国の機関のみ','地方公共団体のみ'], answer:1, exp:'退職管理の適正の確保（地公法38条の2等）。再就職者による現職職員への働きかけ規制の対象は<strong>営利企業等（営利企業及び非営利法人）</strong>。'},
+  {ch:5, type:'mc', hot:true, q:'令和6年6月の地方自治法改正で導入された、行政手続のデジタル化に関する規定として正しいものはどれか。', choices:['公金収納事務のデジタル化（指定公金事務取扱者制度）','住民投票のオンライン化','議会のオンライン開催義務化','条例制定のデジタル署名'], answer:0, exp:'<strong>公金収納事務のデジタル化</strong>。令和6年改正により、地方公共団体が指定する者（指定公金事務取扱者）にキャッシュレス決済等を含む歳入の収納事務を委託できる制度が整備された。'},
+  {ch:5, type:'ox', q:'会計年度任用職員には、フルタイム・パートタイムを問わず期末手当が支給される。また、令和6年4月からは勤勉手当も支給可能となった。', answer:true, exp:'会計年度任用職員：フルタイム・パートタイム共に<strong>期末手当の支給対象</strong>。さらに令和6年4月からは<strong>勤勉手当</strong>も支給可能（令和5年地方自治法改正）。'},
+  {ch:5, type:'mc', q:'令和6年改正の地方自治法における国の補充的指示権について、正しい記述はどれか。', choices:['指示の対象は法定受託事務に限られる','自治事務も指示の対象となるが、附帯決議では代執行はできないとされた','地方公共団体は指示に従う必要がない','内閣総理大臣のみが指示を行える'], answer:1, exp:'補充的指示権の対象は法定受託事務に限られず<strong>自治事務も含む</strong>。ただし国会の附帯決議では「指示の対象が自治事務である場合、代執行はできない」とされた。'}
+];
+
+// ============ STATE ============
+let state = {
+  mode: null,
+  chapter: null,
+  questions: [],
+  current: 0,
+  answered: 0,
+  correct: 0,
+  wrongList: [],
+  streak: 0,
+  pendingMode: null,
+  pendingChapter: null
+};
+
+let stats = JSON.parse(localStorage.getItem('jichitai_stats_v2') || '{}');
+if (!stats.sessions) stats = { sessions: 0, totalAnswered: 0, totalCorrect: 0, savedWrong: [], roundsCompleted: {} };
+if (!stats.roundsCompleted) stats.roundsCompleted = {};
+
+const ROUND_SIZE = 10;
+
+const chapterTitles = {
+  1: '法律の基礎',
+  2: '地方自治',
+  3: '地方公務員制度',
+  4: '財政と税',
+  5: '過去10年の主な法改正'
+};
+
+// ============ INIT ============
+function init() {
+  document.getElementById('totalQ').textContent = questions.length;
+  document.getElementById('sessions').textContent = stats.sessions || 0;
+  const acc = stats.totalAnswered > 0 
+    ? Math.round((stats.totalCorrect / stats.totalAnswered) * 100) + '%'
+    : '--';
+  document.getElementById('accuracy').textContent = acc;
+  
+  const list = document.getElementById('chapterList');
+  list.innerHTML = '';
+  for (let ch = 1; ch <= 5; ch++) {
+    const count = questions.filter(q => q.ch === ch).length;
+    const btn = document.createElement('button');
+    btn.className = 'chapter-card';
+    btn.onclick = () => openRoundModal(ch);
+    btn.innerHTML = `
+      <div style="display:flex; align-items:center; flex:1;">
+        <span class="ch-num">第${ch}章</span>
+        <span class="ch-title">${chapterTitles[ch]}</span>
+      </div>
+      <span class="ch-count">${count}問</span>
+    `;
+    list.appendChild(btn);
+  }
+}
+
+// ============ ROUND MODAL ============
+function openRoundModal(chapter) {
+  state.pendingChapter = chapter;
+  const pool = chapter === 'all' ? questions : questions.filter(q => q.ch === chapter);
+  const totalRounds = Math.ceil(pool.length / ROUND_SIZE);
+  
+  const title = chapter === 'all' 
+    ? '全範囲ランダム（10問ずつ）'
+    : `第${chapter}章 ${chapterTitles[chapter]}`;
+  document.getElementById('roundTitle').textContent = title;
+  
+  const info = chapter === 'all'
+    ? `全${pool.length}問・10問ずつのセットに分けて出題（ランダム）`
+    : `全${pool.length}問・10問ずつのセットに分けて出題`;
+  document.getElementById('roundInfo').textContent = info;
+  
+  const grid = document.getElementById('roundGrid');
+  grid.innerHTML = '';
+  
+  // ランダム全問
+  if (chapter === 'all') {
+    const allBtn = document.createElement('button');
+    allBtn.className = 'round-btn';
+    allBtn.style.gridColumn = 'span 2';
+    allBtn.style.background = 'var(--ink)';
+    allBtn.style.color = 'var(--paper)';
+    allBtn.innerHTML = `<span class="r-num">ランダム10問</span><span class="r-range">毎回シャッフル</span>`;
+    allBtn.onclick = () => {
+      closeRoundModal();
+      startQuiz('all', 'random', 0, true);
+    };
+    grid.appendChild(allBtn);
+  }
+  
+  for (let i = 0; i < totalRounds; i++) {
+    const btn = document.createElement('button');
+    btn.className = 'round-btn';
+    const start = i * ROUND_SIZE + 1;
+    const end = Math.min((i + 1) * ROUND_SIZE, pool.length);
+    
+    const key = `ch${chapter}_r${i}`;
+    if (stats.roundsCompleted[key]) {
+      btn.classList.add('completed');
+    }
+    
+    btn.innerHTML = `<span class="r-num">第${i + 1}セット</span><span class="r-range">${start}〜${end}問</span>`;
+    btn.onclick = () => {
+      closeRoundModal();
+      startQuiz(chapter, 'sequential', i, false);
+    };
+    grid.appendChild(btn);
+  }
+  
+  document.getElementById('roundModal').classList.remove('hidden');
+}
+
+function closeRoundModal() {
+  document.getElementById('roundModal').classList.add('hidden');
+}
+
+// ============ QUIZ FLOW ============
+function startQuiz(chapter, order, roundIndex = 0, isRandom = false) {
+  let pool = [];
+  
+  if (chapter === 'all') {
+    pool = [...questions];
+  } else if (chapter === 'wrong') {
+    if (!stats.savedWrong || stats.savedWrong.length === 0) {
+      alert('間違えた問題はまだ記録されていません。\nまず通常モードで挑戦してください。');
+      return;
+    }
+    pool = stats.savedWrong.map(idx => questions[idx]).filter(q => q);
+    pool = pool.slice(0, ROUND_SIZE);
+  } else if (chapter === 'quick') {
+    pool = questions.filter(q => q.hot);
+    pool = shuffle([...pool]).slice(0, ROUND_SIZE);
+  } else if (chapter === 'latest') {
+    pool = questions.filter(q => q.ch === 5);
+    pool = shuffle([...pool]).slice(0, ROUND_SIZE);
+  } else {
+    pool = questions.filter(q => q.ch === chapter);
+    if (!isRandom) {
+      // セット分割
+      const start = roundIndex * ROUND_SIZE;
+      pool = pool.slice(start, start + ROUND_SIZE);
+    }
+  }
+
+  if (order === 'random' || isRandom) {
+    pool = shuffle([...pool]);
+    if (isRandom && chapter === 'all') {
+      pool = pool.slice(0, ROUND_SIZE);
+    }
+  }
+
+  state = {
+    mode: chapter,
+    chapter: chapter,
+    roundIndex: roundIndex,
+    isRandom: isRandom,
+    questions: pool,
+    current: 0,
+    answered: 0,
+    correct: 0,
+    wrongList: [],
+    streak: 0
+  };
+
+  document.getElementById('home').classList.add('hidden');
+  document.getElementById('result').classList.add('hidden');
+  document.getElementById('quiz').classList.remove('hidden');
+
+  renderQuestion();
+}
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function renderQuestion() {
+  const q = state.questions[state.current];
+  document.getElementById('qNum').textContent = state.current + 1;
+  document.getElementById('qTotal').textContent = state.questions.length;
+  document.getElementById('progressFill').style.width = 
+    ((state.current) / state.questions.length * 100) + '%';
+
+  const card = document.getElementById('qCard');
+  card.dataset.num = `Q.${String(state.current + 1).padStart(2, '0')}`;
+
+  const streakInd = document.getElementById('streakInd');
+  if (state.streak >= 2) {
+    streakInd.textContent = `🔥 ${state.streak}連続`;
+    streakInd.classList.remove('hidden');
+  } else {
+    streakInd.classList.add('hidden');
+  }
+
+  const tag = document.getElementById('qTag');
+  if (q.type === 'ox') {
+    tag.textContent = '○×問題';
+    tag.className = 'q-tag ox';
+  } else if (q.type === 'fill') {
+    tag.textContent = '空欄補充';
+    tag.className = 'q-tag fill';
+  } else {
+    tag.textContent = '四択';
+    tag.className = 'q-tag';
+  }
+
+  const chTag = document.getElementById('qChTag');
+  chTag.textContent = `第${q.ch}章`;
+
+  let qText = q.q;
+  if (q.type === 'fill') {
+    qText = qText.replace(/【　+】/g, '<span class="blank">？</span>');
+  }
+  document.getElementById('qText').innerHTML = qText;
+
+  const choicesDiv = document.getElementById('qChoices');
+  choicesDiv.innerHTML = '';
+
+  if (q.type === 'mc') {
+    const wrap = document.createElement('div');
+    wrap.className = 'choices';
+    const labels = ['ア', 'イ', 'ウ', 'エ', 'オ'];
+    q.choices.forEach((c, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'choice';
+      btn.innerHTML = `<span class="label">${labels[i]}</span><span>${c}</span>`;
+      btn.onclick = () => answerMC(i);
+      wrap.appendChild(btn);
+    });
+    choicesDiv.appendChild(wrap);
+  } else if (q.type === 'ox') {
+    const wrap = document.createElement('div');
+    wrap.className = 'ox-choices';
+    
+    const oBtn = document.createElement('button');
+    oBtn.className = 'ox-choice maru';
+    oBtn.textContent = '○';
+    oBtn.onclick = () => answerOX(true);
+    
+    const xBtn = document.createElement('button');
+    xBtn.className = 'ox-choice batsu';
+    xBtn.textContent = '×';
+    xBtn.onclick = () => answerOX(false);
+    
+    wrap.appendChild(oBtn);
+    wrap.appendChild(xBtn);
+    choicesDiv.appendChild(wrap);
+  } else if (q.type === 'fill') {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'fill-input';
+    input.placeholder = '答えを入力...';
+    input.id = 'fillInput';
+    input.autocomplete = 'off';
+    
+    const btn = document.createElement('button');
+    btn.className = 'fill-submit';
+    btn.textContent = '回答する';
+    btn.onclick = () => answerFill();
+    
+    choicesDiv.appendChild(input);
+    choicesDiv.appendChild(btn);
+    
+    input.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') answerFill();
+    });
+    setTimeout(() => input.focus(), 100);
+  }
+
+  document.getElementById('qExp').classList.add('hidden');
+  document.getElementById('nextBtn').classList.add('hidden');
+}
+
+function answerMC(idx) {
+  const q = state.questions[state.current];
+  const buttons = document.querySelectorAll('.choice');
+  buttons.forEach((b, i) => {
+    b.disabled = true;
+    if (i === q.answer) b.classList.add('correct');
+    if (i === idx && idx !== q.answer) b.classList.add('incorrect');
+  });
+  finishAnswer(idx === q.answer);
+}
+
+function answerOX(val) {
+  const q = state.questions[state.current];
+  const buttons = document.querySelectorAll('.ox-choice');
+  const correctIdx = q.answer ? 0 : 1;
+  const userIdx = val ? 0 : 1;
+  buttons.forEach((b, i) => {
+    b.disabled = true;
+    if (i === correctIdx) b.classList.add('correct');
+    if (i === userIdx && userIdx !== correctIdx) b.classList.add('incorrect');
+  });
+  finishAnswer(val === q.answer);
+}
+
+function answerFill() {
+  const q = state.questions[state.current];
+  const input = document.getElementById('fillInput');
+  const userAns = input.value.trim();
+  if (!userAns) {
+    input.focus();
+    return;
+  }
+  
+  const answers = Array.isArray(q.answer) ? q.answer : [q.answer];
+  const correct = answers.some(a => 
+    userAns === a || 
+    userAns.replace(/\s/g, '') === a.replace(/\s/g, '')
+  );
+  
+  input.disabled = true;
+  document.querySelector('.fill-submit').disabled = true;
+  
+  if (correct) {
+    input.style.background = '#d4e3d0';
+    input.style.borderColor = 'var(--green)';
+  } else {
+    input.style.background = '#ebd6d9';
+    input.style.borderColor = 'var(--rose)';
+  }
+  
+  finishAnswer(correct);
+}
+
+function finishAnswer(isCorrect) {
+  state.answered++;
+  if (isCorrect) {
+    state.correct++;
+    state.streak++;
+  } else {
+    state.streak = 0;
+    const q = state.questions[state.current];
+    state.wrongList.push(questions.indexOf(q));
+  }
+
+  const exp = document.getElementById('qExp');
+  let expText = state.questions[state.current].exp;
+  
+  const q = state.questions[state.current];
+  if (q.type === 'fill') {
+    const ans = Array.isArray(q.answer) ? q.answer[0] : q.answer;
+    expText = `<strong>正解：${ans}</strong><br>${expText}`;
+  }
+  
+  document.getElementById('expText').innerHTML = expText;
+  exp.classList.remove('hidden');
+  document.getElementById('nextBtn').classList.remove('hidden');
+  
+  setTimeout(() => {
+    exp.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }, 200);
+}
+
+function nextQuestion() {
+  state.current++;
+  if (state.current >= state.questions.length) {
+    showResult();
+  } else {
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+function showResult() {
+  document.getElementById('quiz').classList.add('hidden');
+  document.getElementById('result').classList.remove('hidden');
+  document.getElementById('finalScore').textContent = state.correct;
+  document.getElementById('finalTotal').textContent = state.questions.length;
+  
+  const pct = Math.round((state.correct / state.questions.length) * 100);
+  let grade = '', msg = '';
+  if (pct === 100) {
+    grade = '満点';
+    msg = '完璧です！この調子で。';
+  } else if (pct >= 80) {
+    grade = '優';
+    msg = '十分理解できています。間違えた問題を復習してさらに磐石に。';
+  } else if (pct >= 60) {
+    grade = '良';
+    msg = 'もう一歩。間違えた問題を中心に復習しましょう。';
+  } else if (pct >= 40) {
+    grade = '可';
+    msg = 'テキストに戻って基礎を固めましょう。';
+  } else {
+    grade = '要復習';
+    msg = '焦らず、章別演習で基礎から積み上げていきましょう。';
+  }
+  document.getElementById('grade').textContent = grade;
+  document.getElementById('msg').textContent = msg;
+
+  const review = document.getElementById('wrongReview');
+  if (state.wrongList.length > 0) {
+    let html = '<h3>間違えた問題</h3>';
+    state.wrongList.forEach(idx => {
+      const q = questions[idx];
+      let ans = '';
+      if (q.type === 'mc') ans = q.choices[q.answer];
+      else if (q.type === 'ox') ans = q.answer ? '○（正しい）' : '×（誤り）';
+      else ans = Array.isArray(q.answer) ? q.answer[0] : q.answer;
+      
+      html += `
+        <div class="wrong-item">
+          <div class="wq">Q. ${q.q.replace(/【　+】/g, '___')}</div>
+          <div class="wa">→ ${ans}</div>
+        </div>
+      `;
+    });
+    review.innerHTML = html;
+  } else {
+    review.innerHTML = '';
+  }
+
+  // セット完了マーク（70%以上で完了とみなす）
+  if (state.chapter && typeof state.chapter === 'number' && !state.isRandom && pct >= 70) {
+    const key = `ch${state.chapter}_r${state.roundIndex}`;
+    stats.roundsCompleted[key] = true;
+  }
+
+  stats.sessions = (stats.sessions || 0) + 1;
+  stats.totalAnswered = (stats.totalAnswered || 0) + state.answered;
+  stats.totalCorrect = (stats.totalCorrect || 0) + state.correct;
+  
+  const newWrong = new Set([...(stats.savedWrong || []), ...state.wrongList]);
+  const correctIdxs = state.questions
+    .map((q, i) => state.wrongList.includes(questions.indexOf(q)) ? null : questions.indexOf(q))
+    .filter(x => x !== null);
+  correctIdxs.forEach(idx => newWrong.delete(idx));
+  stats.savedWrong = [...newWrong];
+  
+  localStorage.setItem('jichitai_stats_v2', JSON.stringify(stats));
+}
+
+function retryWrong() {
+  if (state.wrongList.length === 0) {
+    alert('全問正解です！復習する問題はありません。');
+    return;
+  }
+  const wrongQuestions = state.wrongList.map(idx => questions[idx]);
+  state = {
+    mode: 'retry',
+    chapter: 'retry',
+    questions: shuffle([...wrongQuestions]),
+    current: 0,
+    answered: 0,
+    correct: 0,
+    wrongList: [],
+    streak: 0
+  };
+  document.getElementById('result').classList.add('hidden');
+  document.getElementById('quiz').classList.remove('hidden');
+  renderQuestion();
+}
+
+function goHome() {
+  document.getElementById('quiz').classList.add('hidden');
+  document.getElementById('result').classList.add('hidden');
+  document.getElementById('home').classList.remove('hidden');
+  init();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+init();
+</script>
+</body>
+</html>
