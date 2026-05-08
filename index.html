@@ -1040,7 +1040,7 @@ function openRoundModal(chapter) {
   document.getElementById('roundTitle').textContent = title;
   
   const info = chapter === 'all'
-    ? `全${pool.length}問・10問ずつのセットに分けて出題（ランダム）`
+    ? `全${pool.length}問・10問ずつのセット、または毎回シャッフルから選択`
     : `全${pool.length}問・10問ずつのセットに分けて出題`;
   document.getElementById('roundInfo').textContent = info;
   
@@ -1092,9 +1092,7 @@ function closeRoundModal() {
 function startQuiz(chapter, order, roundIndex = 0, isRandom = false) {
   let pool = [];
   
-  if (chapter === 'all') {
-    pool = [...questions];
-  } else if (chapter === 'wrong') {
+  if (chapter === 'wrong') {
     if (!stats.savedWrong || stats.savedWrong.length === 0) {
       alert('間違えた問題はまだ記録されていません。\nまず通常モードで挑戦してください。');
       return;
@@ -1107,19 +1105,17 @@ function startQuiz(chapter, order, roundIndex = 0, isRandom = false) {
   } else if (chapter === 'latest') {
     pool = questions.filter(q => q.ch === 5);
     pool = shuffle([...pool]).slice(0, ROUND_SIZE);
+  } else if (isRandom) {
+    // 「ランダム10問」モード（全範囲からランダムに10問）
+    const fullPool = chapter === 'all' ? [...questions] : questions.filter(q => q.ch === chapter);
+    pool = shuffle([...fullPool]).slice(0, ROUND_SIZE);
   } else {
-    pool = questions.filter(q => q.ch === chapter);
-    if (!isRandom) {
-      // セット分割
-      const start = roundIndex * ROUND_SIZE;
-      pool = pool.slice(start, start + ROUND_SIZE);
-    }
-  }
-
-  if (order === 'random' || isRandom) {
-    pool = shuffle([...pool]);
-    if (isRandom && chapter === 'all') {
-      pool = pool.slice(0, ROUND_SIZE);
+    // セット指定モード（全範囲または章別、roundIndexで範囲を切る）
+    const fullPool = chapter === 'all' ? [...questions] : questions.filter(q => q.ch === chapter);
+    const start = roundIndex * ROUND_SIZE;
+    pool = fullPool.slice(start, start + ROUND_SIZE);
+    if (order === 'random') {
+      pool = shuffle([...pool]);
     }
   }
 
@@ -1389,8 +1385,12 @@ function showResult() {
     review.innerHTML = '';
   }
 
-  // セット完了マーク（70%以上で完了とみなす）
-  if (state.chapter && typeof state.chapter === 'number' && !state.isRandom && pct >= 70) {
+  // セット完了マーク（60%以上で完了とみなす）
+  // ランダムモード（毎回シャッフル）以外で、章別/全範囲セットの場合に保存
+  if (state.chapter && !state.isRandom && 
+      state.chapter !== 'wrong' && state.chapter !== 'quick' && 
+      state.chapter !== 'latest' && state.chapter !== 'retry' && 
+      pct >= 60) {
     const key = `ch${state.chapter}_r${state.roundIndex}`;
     stats.roundsCompleted[key] = true;
   }
